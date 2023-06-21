@@ -1,0 +1,41 @@
+[
+  {
+    "model": "steam_app.user",
+    "pk": 1,
+    "fields": {
+      "username" :"Schpadel",
+      "address" : "",
+      "firstname" : "Patrick",
+      "lastname" : "Sandmann",
+      "birthday" : "1997-07-07",
+      "vac" : "false",
+      "level" : "1"
+    }
+  },
+  {
+    "model": "steam_app.user",
+    "pk": 2,
+    "fields": {
+      "username" :"Krummbuggl",
+      "address" : "Musterstraße 4",
+      "firstname" : "Dennis",
+      "lastname" : "Erbe",
+      "birthday" : "1996-05-14",
+      "vac" : "false",
+      "level" : "20"
+    }
+  },
+    {
+    "model": "steam_app.user",
+    "pk": 3,
+    "fields": {
+      "username" :"Fio",
+      "address" : "",
+      "firstname" : "Filippo ",
+      "lastname" : "Fiorenza",
+      "birthday" : "1998-03-06",
+      "vac" : "false",
+      "level" : "12"
+    }
+  }
+]
