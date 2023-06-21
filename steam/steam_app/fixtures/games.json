@@ -1,0 +1,40 @@
+[
+  {
+    "model": "steam_app.game",
+    "pk": 1,
+    "fields": {
+      "name" :"Diablo IV",
+      "release_date" : "2023-06-06",
+      "developer" : "Blizzard",
+      "franchise" : "Diablo",
+      "publisher" : "Dennis Oma",
+      "description" : "Lilith goes to town",
+      "supported_languages" : "EN,DE,FR,IT",
+      "supported_platforms" : "PC",
+      "rating" : 69,
+      "usk" : 18,
+      "genre" : "ARPG",
+      "price" : 69.42,
+      "size" : 420
+    }
+  },
+  {
+    "model": "steam_app.game",
+    "pk": 2,
+    "fields": {
+      "name" :"Minecraft",
+      "release_date" : "2009-04-20",
+      "developer" : "Mojang",
+      "franchise" : "Minecraft",
+      "publisher" : "Microsoft",
+      "description" : "Build some stuff!",
+      "supported_languages" : "EN,DE,FR,IT",
+      "supported_platforms" : "PC",
+      "rating" : 100,
+      "usk" : 6,
+      "genre" : "Survival",
+      "price" : 30,
+      "size" : 0.5
+    }
+  }
+]
