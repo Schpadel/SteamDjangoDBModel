@@ -114,8 +114,7 @@ erDiagram
     %%    itemID int
     %%    name string
     %%    description string
-    %%
-  }
+    %%}
 ```
 
 ## Tooling:
