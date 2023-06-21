@@ -4,7 +4,7 @@
 
 Filippo Fiorenza 205 194
 
-Patrick Sandmann
+Patrick Sandmann 214 063
 
 Dennis Erbe
 
@@ -14,12 +14,14 @@ Semester: SS2023, Repo: Steam, Course ID: 262058, Course name: Datenbanken 1
 
 ### Access Patterns
 
-1. As a user, I would like to be able to create an account for myself
-2. As a game developer, I want to be able to provide the updated version of my game software
-3. As an admin, I should be able to delete the account of players who have repeatedly attracted attention by cheating in multiplayer games.
-4. As a friend of another user, I would like to see what games he has in his library.
-5. As a user, I would like to put the games I want on my wishlist
-6. As a game developer, I would like to update the price of my offered games
+1. As a user, I would like to list all the games that i have in my library | read
+2. As a game developer, I want to be able to provide the updated version of my game software | update
+3. As an admin, I should be able to delete the account of players who have repeatedly attracted attention by cheating in multiplayer games. | delete
+4. As a game developer, I would like to publish my new game on steam. | create
+5. As a user, I would like to be able to add games on my wishlist and remove them | update
+6. As a game developer, I would like to update the price of my offered games | update
+7. As a user i would like to be able to unlock achievements | create
+8. As a user i would like to delete my review | delete
 
 ## Data Model:
 
@@ -52,14 +54,8 @@ erDiagram
         CloudSaveStatus boolean
         gameID int
     }
-    GUIDE }o--|| GAME : has
-        GUIDE {
-            id int
-            name string
-            text string
-            picture PNG
-            userID int
-    }
+
+
     WISHLIST }o--o{ GAME : listed
         WISHLIST {
             userID int
@@ -81,15 +77,15 @@ erDiagram
             userID int
         }
 
-    GUIDE }o--|| USER : has
+
     WISHLIST ||--|| USER : has
     %%ACHIEVEMENT }o--o{ USER : "achieved"
     REVIEW }o--|| USER : has    
-    INVENTORY ||--|| USER : has
-        INVENTORY {
-            userID int
-            itemID int
-        }
+    %%INVENTORY ||--|| USER : has
+    %%    INVENTORY {
+    %%        userID int
+    %%        itemID int
+    %%    }
 
     USER ||--|| LIBRARY : "has"
         USER {
@@ -104,8 +100,8 @@ erDiagram
             inventory int
             level int
         }
-    USER }o--o{ USER : "friends with"    
-    ITEM }o--o{ INVENTORY : "assigned to"
+
+    %%ITEM }o--o{ INVENTORY : "assigned to"
 
     ACHIVED_BY }o--|| USER : has
         ACHIVED_BY {
@@ -114,11 +110,12 @@ erDiagram
             timestamp DateTime
         }
     ACHIVED_BY }o--|| ACHIEVEMENT: has
-    ITEM {
-        itemID int
-        name string
-        description string
-    }
+    %%ITEM {
+    %%    itemID int
+    %%    name string
+    %%    description string
+    %%
+  }
 ```
 
 ## Tooling:
