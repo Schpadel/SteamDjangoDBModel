@@ -3,6 +3,12 @@ from django.db import models
 
 # Create your models here.
 class Game(models.Model):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
     name = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
     publisher = models.CharField(max_length=200)
