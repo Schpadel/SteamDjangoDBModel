@@ -1,0 +1,12 @@
+[
+  {
+    "model": "steam_app.user",
+    "pk": 1,
+    "fields": {
+      "userID" : 3,
+      "name" : "touch some grass",
+      "description" : "After a 16-hour gaming marathon, you finally closed the game",
+      "gameID" : 1
+    }
+  }
+]

@@ -1,0 +1,10 @@
+[
+{
+    "model": "steam_app.user",
+    "pk": 1,
+    "fields": {
+      "userID": 1,
+      "gameID": 1
+    }
+  }
+]
