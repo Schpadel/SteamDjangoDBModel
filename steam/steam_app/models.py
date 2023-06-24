@@ -23,6 +23,11 @@ class Game(models.Model):
     supported_languages = models.CharField(max_length=200)
     description = models.CharField(max_length=20_000)
 
+    def release_new_game(self, achievements):
+        Game.objects.model.save(self, force_insert=True)
+        for achievement in achievements:
+            Achievement.objects.model.save(achievement)
+
     class Meta:
         constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), )]
 

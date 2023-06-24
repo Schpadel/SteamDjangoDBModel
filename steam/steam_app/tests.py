@@ -1,8 +1,6 @@
 from django.test import TestCase
-from .models import *
-import json
 
-from .steamImplementation import Steam
+from .models import *
 
 ALL_FIXTURES = ["testGame.json", "games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json", "reviews.json", "wishlist.json"]
 
@@ -28,7 +26,7 @@ class GameTestCase(TestCase):
         achievements = list()
         achievements.append(Achievement(game_id=999, description="Help your neighbor", name="Friendly Dude"))
         achievements.append(Achievement(game_id=999, description="Earn some cash", name="Lets gooooo"))
-        Steam.release_new_game(game, achievements)
+        game.release_new_game(achievements)
         game_from_db = Game.objects.get(pk=999)
 
         # Check if game was saved to db correctly
