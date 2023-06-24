@@ -48,4 +48,8 @@ class GameTestCase(TestCase):
         for achievement_from_db, achievements_from_list in zip(achievements_for_game, achievements):
             self.assertEquals(achievement_from_db, achievements_from_list)
 
+    def test_delete_player(self):
+        user_to_delete = SteamUser.objects.get(pk=1)
+        user_to_delete.delete()
 
+        self.assertNotIn(user_to_delete, SteamUser.objects.all())
