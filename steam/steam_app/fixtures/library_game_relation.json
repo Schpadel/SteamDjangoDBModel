@@ -1,0 +1,10 @@
+[
+  {
+    "model": "steam_app.library_games",
+    "pk": 1,
+    "fields": {
+      "library_id": "1",
+      "game_id": "1"
+    }
+  }
+  ]

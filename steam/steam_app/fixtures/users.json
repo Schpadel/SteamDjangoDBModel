@@ -1,6 +1,6 @@
 [
   {
-    "model": "steam_app.user",
+    "model": "steam_app.SteamUser",
     "pk": 1,
     "fields": {
       "username" :"Schpadel",
@@ -15,7 +15,7 @@
     }
   },
   {
-    "model": "steam_app.user",
+    "model": "steam_app.SteamUser",
     "pk": 2,
     "fields": {
       "username" :"Krummbuggl",
@@ -30,7 +30,7 @@
     }
   },
     {
-    "model": "steam_app.user",
+    "model": "steam_app.SteamUser",
     "pk": 3,
     "fields": {
       "username" :"Fio",

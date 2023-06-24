@@ -15,7 +15,8 @@
       "usk" : 18,
       "genre" : "ARPG",
       "price" : 69.42,
-      "size" : 420
+      "size" : 420,
+      "version" : "1.0"
     }
   },
   {
@@ -34,7 +35,8 @@
       "usk" : 6,
       "genre" : "Survival",
       "price" : 30,
-      "size" : 0.5
+      "size" : 0.5,
+      "version" : "1.0"
     }
   }
 ]
