@@ -53,7 +53,7 @@ class User(models.Model):
 class Achievement(models.Model):
     name = models.CharField(max_length=200, default="Undefined")
     description = models.CharField(max_length=200, null=True)
-    gameID = models.ForeignKey(Game, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
 
 class Review(models.Model):
