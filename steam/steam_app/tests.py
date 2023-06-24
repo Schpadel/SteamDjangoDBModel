@@ -53,3 +53,10 @@ class GameTestCase(TestCase):
         user_to_delete.delete()
 
         self.assertNotIn(user_to_delete, SteamUser.objects.all())
+
+    def test_update_price_of_game(self):
+        game_to_update = Game.objects.get(pk=1)
+        game_to_update.price = 200
+        game_to_update.save()
+
+        self.assertEquals(200, Game.objects.get(pk=1).price)
