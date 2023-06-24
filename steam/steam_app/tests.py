@@ -4,7 +4,7 @@ import json
 
 from .steamImplementation import Steam
 
-ALL_FIXTURES = ["games.json"]
+ALL_FIXTURES = ["testGame.json", "games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json", "reviews.json", "wishlist.json"]
 
 
 # Create your tests here.
@@ -17,7 +17,7 @@ class GameTestCase(TestCase):
 
     def test_create_user(self):
         user = User.objects.get(pk=1)
-        self.assertEquals(user.firstname, "Schpadel")
+        self.assertEquals(user.username, "Schpadel")
 
     def test_publish_new_game(self):
         game = Game(publisher="Giants Software", size=30, developer="Giants Software", franchise="Simulation",
@@ -35,4 +35,9 @@ class GameTestCase(TestCase):
         self.assertEquals(game_from_db, game)
 
         achievements_for_game = list(Achievement.objects.filter(game_id=999))
-        self.assertEquals(achievements_for_game.pop(), achievements.pop())
+        for achievement_from_db, achievements_from_list in zip(achievements_for_game, achievements):
+            self.assertEquals(achievement_from_db, achievements_from_list)
+
+    def all_games_in_library(self):
+        all_games = User.objects.get(username="Schpadel").get_all_games()
+        self.assertEquals(all_games.first(), Game.objects.get(pk=1))

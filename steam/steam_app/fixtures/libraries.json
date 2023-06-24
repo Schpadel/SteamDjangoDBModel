@@ -1,0 +1,29 @@
+[
+  {
+    "model": "steam_app.library",
+    "pk": 1,
+    "fields": {
+      "timePlayed": "PT100H30M",
+      "lastPlayed": "2023-06-23",
+      "cloudSaveStatus": "True"
+    }
+  },
+  {
+    "model": "steam_app.library",
+    "pk": 2,
+    "fields": {
+      "timePlayed": "PT2H30M",
+      "lastPlayed": "2011-12-13",
+      "cloudSaveStatus": "False"
+    }
+  },
+  {
+    "model": "steam_app.library",
+    "pk": 3,
+    "fields": {
+      "timePlayed": "PT2H30M",
+      "lastPlayed": "2011-12-13",
+      "cloudSaveStatus": "False"
+    }
+  }
+]

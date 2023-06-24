@@ -1,11 +1,11 @@
 [
   {
-    "model": "steam_app.user",
+    "model": "steam_app.achievedBy",
     "pk": 1,
     "fields": {
-      "UserID" :2,
-      "achievementID" : 1,
-      "timestamp" : "2023-06-23-11-50"
+      "user_id" : 1,
+      "achievement_id" : 1,
+      "timestamp" : "2023-06-23 11:50"
     }
   }
 ]

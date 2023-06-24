@@ -1,10 +1,22 @@
 [
 {
-    "model": "steam_app.user",
+    "model": "steam_app.wishlist",
     "pk": 1,
     "fields": {
-      "userID": 1,
-      "gameID": 1
+    }
+  },
+  {
+    "model": "steam_app.wishlist",
+    "pk": 2,
+    "fields": {
+    }
+  },
+  {
+    "model": "steam_app.wishlist",
+    "pk" : 3,
+    "fields" : {
+
     }
   }
+
 ]

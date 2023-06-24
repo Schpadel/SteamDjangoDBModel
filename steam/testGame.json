@@ -1,0 +1,30 @@
+[
+{
+    "model": "steam_app.game",
+    "pk": 1,
+    "fields": {
+        "name": "Test Game",
+        "genre": "Test",
+        "publisher": "Me",
+        "developer": "Blizzard",
+        "franchise": "Diablo",
+        "price": "90.00",
+        "size": "50.00",
+        "rating": 80,
+        "release_date": null,
+        "usk": 12,
+        "supported_platforms": "PC",
+        "supported_languages": "DE",
+        "description": "Ein Test"
+    }
+},
+{
+    "model": "steam_app.achievedby",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "achievement": 1,
+        "timestamp": null
+    }
+}
+]

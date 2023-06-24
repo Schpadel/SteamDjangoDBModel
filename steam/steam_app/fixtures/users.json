@@ -8,8 +8,10 @@
       "firstname" : "Patrick",
       "lastname" : "Sandmann",
       "birthday" : "1997-07-07",
-      "vac" : "false",
-      "level" : "1"
+      "vac" : "False",
+      "level" : "1",
+      "wishList_id" : 1,
+      "library_id" : 1
     }
   },
   {
@@ -21,8 +23,10 @@
       "firstname" : "Dennis",
       "lastname" : "Erbe",
       "birthday" : "1996-05-14",
-      "vac" : "false",
-      "level" : "20"
+      "vac" : "False",
+      "level" : "20",
+      "wishList_id" : 2,
+      "library_id" : 2
     }
   },
     {
@@ -34,8 +38,10 @@
       "firstname" : "Filippo ",
       "lastname" : "Fiorenza",
       "birthday" : "1998-03-06",
-      "vac" : "false",
-      "level" : "12"
+      "vac" : "False",
+      "level" : "12",
+      "wishList_id" : 3,
+      "library_id" : 3
     }
   }
 ]

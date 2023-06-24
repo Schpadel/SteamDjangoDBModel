@@ -49,6 +49,10 @@ class User(models.Model):
     library = models.OneToOneField(Library, on_delete=models.CASCADE)
     wishList = models.OneToOneField(Wishlist, on_delete=models.CASCADE)
 
+    # get all games for this user
+    def get_all_games(self):
+        return self.library.objects.all()
+
 
 class Achievement(models.Model):
     name = models.CharField(max_length=200, default="Undefined")
@@ -60,11 +64,11 @@ class Review(models.Model):
     heading = models.CharField(max_length=200, default="Undefined")
     text = models.CharField(max_length=200, null=True)
     rating = models.SmallIntegerField()
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
-    gameID = models.ForeignKey(Game, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
 
 class AchievedBy(models.Model):
-    userID = models.ForeignKey(User, on_delete=models.CASCADE)
-    achievementID = models.ForeignKey(Achievement, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()

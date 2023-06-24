@@ -1,12 +1,13 @@
 [
   {
-    "model": "steam_app.user",
+    "model": "steam_app.review",
     "pk": 1,
     "fields": {
       "heading" :"Good Game!",
       "text" : "Beautiful Graphics",
       "rating" : "100",
-      "userID" : 1
+      "user_id" : 1,
+      "game_id" : 1
     }
   }
 ]
