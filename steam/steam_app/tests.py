@@ -1,9 +1,7 @@
-import sqlite3
-
-import django
 from django.db import IntegrityError, transaction
 from django.test import TestCase
 from django.utils import timezone
+
 from .models import *
 
 ALL_FIXTURES = ["games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
