@@ -52,9 +52,8 @@ class GameTestCase(TestCase):
         # Check if game was saved to db correctly
         self.assertEquals(game_from_db, game)
 
-        achievements_for_game = list(Achievement.objects.filter(game_id=999))
-        for achievement_from_db, achievements_from_list in zip(achievements_for_game, achievements):
-            self.assertEquals(achievement_from_db, achievements_from_list)
+        achievements_from_db = list(Achievement.objects.filter(game_id=999))
+        self.assertEquals(achievements_from_db, achievements)
 
     def test_delete_player(self):
         user_to_delete = SteamUser.objects.filter(username="Schpadel")
@@ -62,8 +61,12 @@ class GameTestCase(TestCase):
         deleted_user_username = user_to_delete.first().username
         user_to_delete.delete()
 
+        # check if user has been deleted in all relevant tables
         self.assertNotIn(deleted_user_username, SteamUser.objects.values_list("username", flat=True))
         self.assertNotIn(deleted_user_id, Library.objects.values_list("pk", flat=True))
+        self.assertNotIn(deleted_user_id, Review.objects.values_list("user_id", flat=True))
+        self.assertNotIn(deleted_user_id, AchievedBy.objects.values_list("user_id", flat=True))
+        self.assertNotIn(deleted_user_id, Wishlist.objects.values_list("user_id", flat=True))
 
     def test_update_price_of_game(self):
         game_to_update = Game.objects.get(pk=1)

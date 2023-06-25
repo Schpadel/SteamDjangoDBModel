@@ -3,19 +3,21 @@
     "model": "steam_app.wishlist",
     "pk": 1,
     "fields": {
+      "user_id" : 1
     }
   },
   {
     "model": "steam_app.wishlist",
     "pk": 2,
     "fields": {
+      "user_id" : 2
     }
   },
   {
     "model": "steam_app.wishlist",
     "pk" : 3,
     "fields" : {
-
+      "user_id" : 3
     }
   }
 
