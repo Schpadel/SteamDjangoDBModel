@@ -5,7 +5,7 @@ from django.utils import timezone
 from .models import *
 
 ALL_FIXTURES = ["games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
-                "reviews.json", "wishlist.json", "library_game_relation.json", "wishlist_gameID_relation.json"]
+                "reviews.json", "wishlist.json", "library_game_relation.json", "wishlist_wished_Games_relation.json"]
 
 
 # Create your tests here.
