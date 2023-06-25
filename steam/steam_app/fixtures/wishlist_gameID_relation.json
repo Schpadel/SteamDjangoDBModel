@@ -1,6 +1,6 @@
 [
 {
-    "model": "steam_app.wishlist_gameID",
+    "model": "steam_app.wishlist_wished_Games",
     "pk": 1,
     "fields": {
       "wishlist_id" : 1,
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "steam_app.wishlist_gameID",
+    "model": "steam_app.wishlist_wished_Games",
     "pk": 2,
     "fields": {
       "wishlist_id" : 2,
@@ -16,7 +16,7 @@
     }
   },
   {
-    "model": "steam_app.wishlist_gameID",
+    "model": "steam_app.wishlist_wished_Games",
     "pk" : 3,
     "fields" : {
       "wishlist_id" : 1,

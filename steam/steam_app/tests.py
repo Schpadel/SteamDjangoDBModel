@@ -7,7 +7,7 @@ from django.utils import timezone
 from .models import *
 
 ALL_FIXTURES = ["games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
-                "reviews.json", "wishlist.json", "library_game_relation.json"]
+                "reviews.json", "wishlist.json", "library_game_relation.json", "wishlist_gameID_relation.json"]
 
 
 # Create your tests here.
@@ -111,3 +111,19 @@ class GameTestCase(TestCase):
         user_who_wants_to_delete.review_set.all().first().delete()
 
         self.assertEquals(count_of_reviews - 1, user_who_wants_to_delete.review_set.count())
+
+    def test_add_games_to_wishlist(self):
+        user = SteamUser.objects.get(pk=2)
+        user.wishlist.wished_Games.add(Game.objects.get(pk=4))
+
+        for wishlist in Wishlist.objects.all():
+            print(wishlist.wished_Games.all())
+
+    def test_remove_games_from_wishlist(self):
+        user = SteamUser.objects.get(pk=2)
+        user.wishlist.wished_Games.remove(Game.objects.get(pk=1))
+
+        for wishlist in Wishlist.objects.all():
+            print(wishlist.wished_Games.all())
+
+        #self.asertEquals(wished_Games,

@@ -42,7 +42,7 @@ class SteamUser(models.Model):
 
 
 class Wishlist(models.Model):
-    gameID = models.ManyToManyField(Game)
+    wished_Games = models.ManyToManyField(Game)
     user = models.OneToOneField(SteamUser, on_delete=models.CASCADE)
 
 
