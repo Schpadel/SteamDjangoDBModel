@@ -72,3 +72,6 @@ class AchievedBy(models.Model):
     user = models.ForeignKey(SteamUser, on_delete=models.CASCADE)
     achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['user', 'achievement'], name='unique_achievement_unlock')]

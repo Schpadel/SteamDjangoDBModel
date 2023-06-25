@@ -38,5 +38,85 @@
       "size" : 0.5,
       "version" : "1.0"
     }
+  },
+  {
+    "model": "steam_app.game",
+    "pk": 3,
+    "fields": {
+      "name": "Barotrauma",
+      "release_date": "2023-03-13",
+      "developer": "FakeFish",
+      "franchise": "-",
+      "publisher": "Daedalic Entertainment",
+      "description": "Lets visit the Titanic",
+      "supported_languages": "EN,DE,FR,IT",
+      "supported_platforms": "PC",
+      "rating": 94,
+      "usk": 6,
+      "genre": "Survival",
+      "price": 34.99,
+      "size": 0.5,
+      "version": "1.0"
+    }
+  },
+  {
+    "model": "steam_app.game",
+    "pk": 4,
+    "fields": {
+      "name": "Grand Theft Auto 5",
+      "release_date": "2013-09-17",
+      "developer": "Take 2",
+      "franchise": "Grand Theft Auto",
+      "publisher": "Rockstar Games",
+      "description": "Open-World Actiongame",
+      "supported_languages": "EN,DE,FR,IT",
+      "supported_platforms": "PC, PS, XBOX",
+      "rating": 70,
+      "usk": 18,
+      "genre": "Action",
+      "price": 34.99,
+      "size": 54.9,
+      "version": "1.0"
+    }
+  },
+    {
+    "model": "steam_app.game",
+    "pk": 5,
+    "fields": {
+      "name": "Fortnite",
+      "release_date": "2017-07-25",
+      "developer": "Epic Games",
+      "franchise": "-",
+      "publisher": "Gearbox Publishing",
+      "description": "Multiplayer Survival",
+      "supported_languages": "EN,DE,FR,IT",
+      "supported_platforms": "PC, PS, XBOX, Nintendo Switch, Android, iOS",
+      "rating": 60,
+      "usk": 12,
+      "genre": "Battle Royale",
+      "price": 0,
+      "size": 39.4,
+      "version": "23.3"
+    }
+  },
+  {
+    "model": "steam_app.game",
+    "pk": 6,
+    "fields": {
+      "name": "Risk of Rain 2",
+      "release_date": "2020-08-11",
+      "developer": "Hopoo Games",
+      "franchise": "Risk of Rain",
+      "publisher": "Gearbox Publishing",
+      "description": "Shoot some stuff",
+      "supported_languages": "EN,DE",
+      "supported_platforms": "PC, PS, XBOX, Nintendo Switch",
+      "rating": 96,
+      "usk": 12,
+      "genre": "Rogue-Like",
+      "price": 19.34,
+      "size": 4.0,
+      "version": "1.2"
+    }
   }
 ]

@@ -1,3 +1,7 @@
+import sqlite3
+
+import django
+from django.db import IntegrityError, transaction
 from django.test import TestCase
 from django.utils import timezone
 from .models import *
@@ -65,10 +69,30 @@ class GameTestCase(TestCase):
         user_to_unlock_achievement = SteamUser.objects.get(pk=1)
         achievement_to_unlock = Achievement.objects.get(pk=2)
 
-        AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(), user=user_to_unlock_achievement)
+        AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(),
+                                  user=user_to_unlock_achievement)
 
-        self.assertEquals(achievement_to_unlock, user_to_unlock_achievement.achievedby_set.filter(achievement=achievement_to_unlock).first().achievement)
-        self.assertEquals(user_to_unlock_achievement, achievement_to_unlock.achievedby_set.filter(achievement=achievement_to_unlock).first().user)
+        self.assertEquals(achievement_to_unlock, user_to_unlock_achievement.achievedby_set.filter(
+            achievement=achievement_to_unlock).first().achievement)
+        self.assertEquals(user_to_unlock_achievement,
+                          achievement_to_unlock.achievedby_set.filter(achievement=achievement_to_unlock).first().user)
+
+    def test_unlock_same_achievement_twice(self):
+        user_to_unlock_achievement = SteamUser.objects.get(pk=1)
+        achievement_to_unlock = Achievement.objects.get(pk=2)
+
+        AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(),
+                                  user=user_to_unlock_achievement)
+
+        with transaction.atomic():  # atomic to make sure self.assertRaises works correctly
+            with self.assertRaises(IntegrityError):
+                AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(),
+                                          user=user_to_unlock_achievement)
+
+        self.assertEquals(achievement_to_unlock, user_to_unlock_achievement.achievedby_set.filter(
+            achievement=achievement_to_unlock).first().achievement)
+        self.assertEquals(user_to_unlock_achievement, achievement_to_unlock.achievedby_set.filter(
+            achievement=achievement_to_unlock).first().user)
 
     def test_delete_review(self):
         user_who_wants_to_delete = SteamUser.objects.get(pk=1)
