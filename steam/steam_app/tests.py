@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+from django.utils import timezone
 from .models import *
 
 ALL_FIXTURES = ["testGame.json", "games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
@@ -60,3 +60,20 @@ class GameTestCase(TestCase):
         game_to_update.save()
 
         self.assertEquals(200, Game.objects.get(pk=1).price)
+
+    def test_unlock_achievements(self):
+        user_to_unlock_achievement = SteamUser.objects.get(pk=1)
+        achievement_to_unlock = Achievement.objects.get(pk=2)
+
+        AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(), user=user_to_unlock_achievement)
+
+        self.assertEquals(achievement_to_unlock, user_to_unlock_achievement.achievedby_set.filter(achievement=achievement_to_unlock).first().achievement)
+        self.assertEquals(user_to_unlock_achievement, achievement_to_unlock.achievedby_set.filter(achievement=achievement_to_unlock).first().user)
+
+    def test_delete_review(self):
+        user_who_wants_to_delete = SteamUser.objects.get(pk=1)
+
+        count_of_reviews = user_who_wants_to_delete.review_set.count()
+        user_who_wants_to_delete.review_set.all().first().delete()
+
+        self.assertEquals(count_of_reviews - 1, user_who_wants_to_delete.review_set.count())

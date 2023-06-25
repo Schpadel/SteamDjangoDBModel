@@ -7,5 +7,14 @@
       "description" : "After a 16-hour gaming marathon, you finally closed the game",
       "game_id" : 1
     }
+  },
+  {
+      "model": "steam_app.achievement",
+    "pk": 2,
+    "fields": {
+      "name" : "Gaming",
+      "description" : "Stay online for 8 hours",
+      "game_id" : 1
+    }
   }
 ]
