@@ -31,7 +31,11 @@ class GameTestCase(TestCase):
 
     def test_all_games_in_library(self):
         all_games = SteamUser.objects.get(username="Schpadel").library.games.all()
-        self.assertEquals(all_games.first(), Game.objects.get(pk=1))
+
+        # test if all games which are assigned in fixture are there
+        owned_games_pk = [1, 3, 4, 6]
+        for owned_game_pk in owned_games_pk:
+            self.assertTrue(Game.objects.get(pk=owned_game_pk) in all_games)
 
     def test_publish_new_game(self):
         game = Game(publisher="Giants Software", size=30, developer="Giants Software", franchise="Simulation",
@@ -53,10 +57,13 @@ class GameTestCase(TestCase):
             self.assertEquals(achievement_from_db, achievements_from_list)
 
     def test_delete_player(self):
-        user_to_delete = SteamUser.objects.get(pk=1)
+        user_to_delete = SteamUser.objects.filter(username="Schpadel")
+        deleted_user_id = user_to_delete.first().id
+        deleted_user_username = user_to_delete.first().username
         user_to_delete.delete()
 
-        self.assertNotIn(user_to_delete, SteamUser.objects.all())
+        self.assertNotIn(deleted_user_username, SteamUser.objects.values_list("username", flat=True))
+        self.assertNotIn(deleted_user_id, Library.objects.values_list("pk", flat=True))
 
     def test_update_price_of_game(self):
         game_to_update = Game.objects.get(pk=1)

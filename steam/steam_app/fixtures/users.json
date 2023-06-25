@@ -10,8 +10,7 @@
       "birthday" : "1997-07-07",
       "vac" : "False",
       "level" : "1",
-      "wishList_id" : 1,
-      "library_id" : 1
+      "wishList_id" : 1
     }
   },
   {
@@ -25,8 +24,7 @@
       "birthday" : "1996-05-14",
       "vac" : "False",
       "level" : "20",
-      "wishList_id" : 2,
-      "library_id" : 2
+      "wishList_id" : 2
     }
   },
     {
@@ -40,8 +38,7 @@
       "birthday" : "1998-03-06",
       "vac" : "False",
       "level" : "12",
-      "wishList_id" : 3,
-      "library_id" : 3
+      "wishList_id" : 3
     }
   }
 ]

@@ -5,7 +5,8 @@
     "fields": {
       "timePlayed": "PT100H30M",
       "lastPlayed": "2023-06-23T13:59:45+01:00",
-      "cloudSaveStatus": "True"
+      "cloudSaveStatus": "True",
+      "user_id" : 1
     }
   },
   {
@@ -14,7 +15,8 @@
     "fields": {
       "timePlayed": "PT2H30M",
       "lastPlayed": "2011-12-13T23:59:59+01:00",
-      "cloudSaveStatus": "False"
+      "cloudSaveStatus": "False",
+      "user_id" : 2
     }
   },
   {
@@ -23,7 +25,8 @@
     "fields": {
       "timePlayed": "PT2H30M",
       "lastPlayed": "2011-12-13T13:59:21+01:00",
-      "cloudSaveStatus": "False"
+      "cloudSaveStatus": "False",
+      "user_id" : 3
     }
   }
 ]

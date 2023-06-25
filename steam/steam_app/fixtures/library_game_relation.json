@@ -6,5 +6,29 @@
       "library_id": "1",
       "game_id": "1"
     }
+  },
+  {
+    "model": "steam_app.library_games",
+    "pk": 2,
+    "fields": {
+      "library_id": "1",
+      "game_id": "3"
+    }
+  },
+    {
+    "model": "steam_app.library_games",
+    "pk": 3,
+    "fields": {
+      "library_id": "1",
+      "game_id": "4"
+    }
+  },
+  {
+    "model": "steam_app.library_games",
+    "pk": 4,
+    "fields": {
+      "library_id": "1",
+      "game_id": "6"
+    }
   }
   ]

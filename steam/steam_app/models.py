@@ -31,13 +31,6 @@ class Game(models.Model):
         constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), )]
 
 
-class Library(models.Model):
-    timePlayed = models.DurationField()
-    lastPlayed = models.DateTimeField()
-    cloudSaveStatus = models.BooleanField()
-    games = models.ManyToManyField(Game)
-
-
 class Wishlist(models.Model):
     gameID = models.ManyToManyField(Game)
 
@@ -50,8 +43,15 @@ class SteamUser(models.Model):
     birthday = models.DateField()
     vac = models.BooleanField()
     level = models.IntegerField()
-    library = models.OneToOneField(Library, on_delete=models.CASCADE)
     wishList = models.OneToOneField(Wishlist, on_delete=models.CASCADE)
+
+
+class Library(models.Model):
+    timePlayed = models.DurationField()
+    lastPlayed = models.DateTimeField()
+    cloudSaveStatus = models.BooleanField()
+    games = models.ManyToManyField(Game)
+    user = models.OneToOneField(SteamUser, on_delete=models.CASCADE)
 
 
 class Achievement(models.Model):
