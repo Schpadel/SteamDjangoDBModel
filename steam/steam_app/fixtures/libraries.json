@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "timePlayed": "PT100H30M",
-      "lastPlayed": "2023-06-23",
+      "lastPlayed": "2023-06-23T13:59:45+01:00",
       "cloudSaveStatus": "True"
     }
   },
@@ -13,7 +13,7 @@
     "pk": 2,
     "fields": {
       "timePlayed": "PT2H30M",
-      "lastPlayed": "2011-12-13",
+      "lastPlayed": "2011-12-13T23:59:59+01:00",
       "cloudSaveStatus": "False"
     }
   },
@@ -22,7 +22,7 @@
     "pk": 3,
     "fields": {
       "timePlayed": "PT2H30M",
-      "lastPlayed": "2011-12-13",
+      "lastPlayed": "2011-12-13T13:59:21+01:00",
       "cloudSaveStatus": "False"
     }
   }

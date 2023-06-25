@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 from .models import *
 
-ALL_FIXTURES = ["testGame.json", "games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
+ALL_FIXTURES = ["games.json", "users.json", "achievedBy.json", "achievements.json", "libraries.json",
                 "reviews.json", "wishlist.json", "library_game_relation.json"]
 
 
