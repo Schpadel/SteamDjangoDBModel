@@ -114,16 +114,16 @@ class GameTestCase(TestCase):
 
     def test_add_games_to_wishlist(self):
         user = SteamUser.objects.get(pk=2)
+
+        count_of_games_on_wishlist = user.wishlist.wished_Games.count()
         user.wishlist.wished_Games.add(Game.objects.get(pk=4))
 
-        for wishlist in Wishlist.objects.all():
-            print(wishlist.wished_Games.all())
+        self.assertEquals(count_of_games_on_wishlist + 1, user.wishlist.wished_Games.count())
 
     def test_remove_games_from_wishlist(self):
-        user = SteamUser.objects.get(pk=2)
-        user.wishlist.wished_Games.remove(Game.objects.get(pk=1))
+        user = SteamUser.objects.get(pk=3)
 
-        for wishlist in Wishlist.objects.all():
-            print(wishlist.wished_Games.all())
+        count_of_games_on_wishlist = user.wishlist.wished_Games.count()
+        user.wishlist.wished_Games.remove(Game.objects.get(pk=5))
 
-        #self.asertEquals(wished_Games,
+        self.assertEquals(count_of_games_on_wishlist - 1, user.wishlist.wished_Games.count())
