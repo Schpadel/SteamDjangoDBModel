@@ -16,7 +16,8 @@ Semester: SS2023, Repo: Steam, Course ID: 262058, Course name: Datenbanken 1
 
 1. As a user, I would like to list all the games that i have in my library | read
 2. As a game developer, I want to be able to provide the updated version of my game software | update
-3. As an admin, I should be able to delete the account of players who have repeatedly attracted attention by cheating in multiplayer games. | delete
+3. As an admin, I should be able to delete the account of players who have repeatedly attracted attention by cheating in
+   multiplayer games. | delete
 4. As a game developer, I would like to publish my new game on steam. | create
 5. As a user, I would like to be able to add games on my wishlist and remove them | update
 6. As a game developer, I would like to update the price of my offered games | update
@@ -45,17 +46,17 @@ erDiagram
         supportedPlatforms string
         supportedLanguages string
         description string
+        version string
     }
     LIBRARY {
         id int
-        game game
         timePlayed DateTime
         lastPlayed DateTime
         CloudSaveStatus boolean
         gameID int
     }
 
-
+    
     WISHLIST }o--o{ GAME : listed
         WISHLIST {
             userID int
@@ -90,17 +91,15 @@ erDiagram
     USER ||--|| LIBRARY : "has"
         USER {
             id int
-            library int
             username string
             addres string
             firstname string
             lastname string
             birthday DateTime
             VAC boolean
-            inventory int
             level int
         }
-
+  
     %%ITEM }o--o{ INVENTORY : "assigned to"
 
     ACHIVED_BY }o--|| USER : has
@@ -119,5 +118,8 @@ erDiagram
 
 ## Tooling:
 
-
 ## Lessons Learned:
+
+Problems occurred with the achievements here, we noticed during implementation that each user is only allowed to receive
+the achievement once. We solved the problem by creating a unique constraint with the name “unique_achievement_unlock”
+for the fields “user” and “achievement”.
