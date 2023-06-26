@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 # Create your models here.
@@ -29,7 +31,8 @@ class Game(models.Model):
 
     class Meta:
         # rating can only be between 0% and 100%
-        constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), )]
+        constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), ),
+                       models.UniqueConstraint(fields=["name"], name="unique_game_name")]
 
 
 class SteamUser(models.Model):
@@ -47,15 +50,31 @@ class SteamUser(models.Model):
 
 class Wishlist(models.Model):
     wished_Games = models.ManyToManyField(Game)
-    user = models.OneToOneField(SteamUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(SteamUser, on_delete=models.CASCADE, null=False)
+
+    # create a new wishlist if a user is created!
+    @receiver(post_save, sender=SteamUser)
+    def create_wishlist(sender, instance, created, **kwargs):
+        if created:
+            Wishlist.objects.create(user=instance)
 
 
 class Library(models.Model):
+    games_in_lib = models.ManyToManyField(Game, through="steam_app.GamesInLibrary")
+    user = models.OneToOneField(SteamUser, on_delete=models.CASCADE, null=False)
+
+    @receiver(post_save, sender=SteamUser)
+    def create_library(sender, instance, created, **kwargs):
+        if created:
+            Library.objects.create(user=instance)
+
+
+class GamesInLibrary(models.Model):
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    library = models.ForeignKey(Library, on_delete=models.CASCADE)
     timePlayed = models.DurationField()
     lastPlayed = models.DateTimeField()
     cloudSaveStatus = models.BooleanField()
-    games = models.ManyToManyField(Game)
-    user = models.OneToOneField(SteamUser, on_delete=models.CASCADE)
 
 
 class Achievement(models.Model):

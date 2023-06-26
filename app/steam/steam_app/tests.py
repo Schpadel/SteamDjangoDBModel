@@ -17,8 +17,8 @@ class GameTestCase(TestCase):
         self.assertEquals(diablo.name, "Diablo IV")
 
     def test_create_user(self):
-        user = SteamUser.objects.get(pk=1)
-        self.assertEquals(user.username, "Schpadel")
+        SteamUser.objects.create(username="peter", birthday="1990-04-03", lastname="gustav", firstname="help", address="Baum2", vac="False", level=3)
+        print(Library.objects.all())
 
     def test_update_game_version(self):
         game_to_update = Game.objects.get(pk=1)
@@ -28,8 +28,7 @@ class GameTestCase(TestCase):
         self.assertEquals(game_from_db.version, "2.0")
 
     def test_all_games_in_library(self):
-        all_games = SteamUser.objects.get(username="Schpadel").library.games.all()
-
+        all_games = SteamUser.objects.get(username="Schpadel").library.games_in_lib.all()
         # test if all games which are assigned in fixture are there
         owned_games_pk = [1, 3, 4, 6]
         for owned_game_pk in owned_games_pk:
@@ -52,6 +51,29 @@ class GameTestCase(TestCase):
 
         achievements_from_db = list(Achievement.objects.filter(game_id=999))
         self.assertEquals(achievements_from_db, achievements)
+
+    def test_publish_same_game_twice(self):
+        game = Game(publisher="Giants Software", size=30, developer="Giants Software", franchise="Simulation",
+                    description="Farm some shit", release_date="2023-05-23", supported_languages="EN",
+                    supported_platforms="PC,Switch", rating=69, usk=0, genre="Simulation", price=44.99,
+                    name="Landwirtschafts Simulator 23")
+        game.pk = 999
+        achievements = list()
+        achievements.append(Achievement(game_id=999, description="Help your neighbor", name="Friendly Dude"))
+        achievements.append(Achievement(game_id=999, description="Earn some cash", name="Lets gooooo"))
+        game.release_new_game(achievements)
+        game_from_db = Game.objects.get(pk=999)
+
+        # Check if game was saved to db correctly
+        self.assertEquals(game_from_db, game)
+
+        achievements_from_db = list(Achievement.objects.filter(game_id=999))
+        self.assertEquals(achievements_from_db, achievements)
+
+        # expected to fail
+        with transaction.atomic():  # atomic to make sure self.assertRaises works correctly
+            with self.assertRaises(IntegrityError):
+                game.release_new_game(achievements)
 
     def test_delete_player(self):
         user_to_delete = SteamUser.objects.filter(username="Schpadel")
@@ -80,6 +102,11 @@ class GameTestCase(TestCase):
         AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(),
                                   user=user_to_unlock_achievement)
 
+        AchievedBy.objects.create(achievement=achievement_to_unlock, timestamp=timezone.now(),
+                                  user=SteamUser.objects.get(pk=2))
+
+        self.assertEquals(achievement_to_unlock, SteamUser.objects.get(pk=2).achievedby_set.filter(
+            achievement=achievement_to_unlock).first().achievement)
         self.assertEquals(achievement_to_unlock, user_to_unlock_achievement.achievedby_set.filter(
             achievement=achievement_to_unlock).first().achievement)
         self.assertEquals(user_to_unlock_achievement,

@@ -1,33 +1,45 @@
 [
   {
-    "model": "steam_app.library_games",
+    "model": "steam_app.gamesinlibrary",
     "pk": 1,
     "fields": {
       "library_id": "1",
+      "timePlayed": "PT100H30M",
+      "lastPlayed": "2023-06-23T13:59:45+01:00",
+      "cloudSaveStatus": "True",
       "game_id": "1"
     }
   },
   {
-    "model": "steam_app.library_games",
+    "model": "steam_app.gamesinlibrary",
     "pk": 2,
     "fields": {
       "library_id": "1",
+      "timePlayed": "PT2H30M",
+      "lastPlayed": "2011-12-13T23:59:59+01:00",
+      "cloudSaveStatus": "False",
       "game_id": "3"
     }
   },
     {
-    "model": "steam_app.library_games",
+    "model": "steam_app.gamesinlibrary",
     "pk": 3,
     "fields": {
       "library_id": "1",
+      "timePlayed": "PT2H30M",
+      "lastPlayed": "2011-12-13T13:59:21+01:00",
+      "cloudSaveStatus": "False",
       "game_id": "4"
     }
   },
   {
-    "model": "steam_app.library_games",
+    "model": "steam_app.gamesinlibrary",
     "pk": 4,
     "fields": {
       "library_id": "1",
+      "timePlayed": "PT2H30M",
+      "lastPlayed": "2011-12-13T13:59:21+01:00",
+      "cloudSaveStatus": "False",
       "game_id": "6"
     }
   }
