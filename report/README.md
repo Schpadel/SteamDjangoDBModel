@@ -25,7 +25,7 @@ Reviews are the rating feature of Steam where each user can write feedback about
 a single game and created by a single user. 
 
 Wishlists are lists which can be populated by the user with games that he would like to buy in the future and being informed about
-if they are on sale. A user always has exactly one wishlist and every wishlist is assigend to exactly one user. 
+if they are on sale. A user always has exactly one wishlist and every wishlist is assigned to exactly one user. 
 
 Library contains games and for each game contained in the library the time played and so on is saved. 
 
@@ -51,6 +51,9 @@ We encountered the same problem with the Wishlist where we also had a ManyToMany
 
 Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library is always created. 
 We solved this problem with Django's signals feature. 
+
+Most of our access patterns could be implemented by using django's access methods, so we did not need to write custom functions, except for 
+releasing a new game where we also wanted to assign the achievements for the new game and the update of the game version. 
 
 
 
@@ -154,6 +157,12 @@ https://docs.djangoproject.com/en/4.2/intro/install/
 https://docs.djangoproject.com/en/4.2/topics/install/
 
 ## Lessons Learned:
+
+We learned how to set up a database with Django and SQLite3, how to implement the models from our ER-diagram, how to
+create the JSON file to get entries for our tests. And finally, how to set up tests in Django and test our implementation.
+
+After installing Python and Django, we found it quite easy to think about and implement the model and the respective
+fixtures for our model from our ER-diagram.
 
 Problems occurred with the achievements here, we noticed during implementation that each user is only allowed to receive
 the achievement once. We solved the problem by creating a unique constraint with the name “unique_achievement_unlock”
