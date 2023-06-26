@@ -16,7 +16,7 @@ class Game(models.Model):
     supported_platforms = models.CharField(max_length=200, default="PC")
     supported_languages = models.CharField(max_length=200)
     description = models.CharField(max_length=20_000)
-    version = models.CharField(max_length=20)  # TODO: add to diagram
+    version = models.CharField(max_length=20)
 
     def release_new_game(self, achievements):
         Game.objects.model.save(self, force_insert=True)
