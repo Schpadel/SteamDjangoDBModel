@@ -12,19 +12,47 @@ Semester: SS2023, Repo: Steam, Course ID: 262058, Course name: Datenbanken 1
 
 ## Introduction:
 
+We modeled the popular video game digital distribution service Steam from Valve. Our application consists of the following
+entities: Game, User, Library, Wishlist, Achievement, Review.
+
+The relationships of our entities are shown in the mermaid ER diagram below.
+
+The Game entity in our application represents not a single unique instance of a uniquely bought key for a user
+but the general game + information which can be bought by multiple users for example "The Elder Scrolls V: Skyrim" but not the 
+unique key which can be redeemed in a user library. This is why we have only one unique game table entry for each game.
+
+Reviews are the rating feature of Steam where each user can write feedback about a game. These reviews are always assigned to
+a single game and created by a single user. 
+
+Wishlists are lists which can be populated by the user with games that he would like to buy in the future and being informed about
+if they are on sale. A user always has exactly one wishlist and every wishlist is assigend to exactly one user. 
+
+Library contains games and for each game contained in the library the time played and so on is saved. 
+
 ### Access Patterns
 
-1. As a user, I would like to list all the games that i have in my library | read
+1. As a user, I would like to list all the games that I have in my library | read
 2. As a game developer, I want to be able to provide the updated version of my game software | update
 3. As an admin, I should be able to delete the account of players who have repeatedly attracted attention by cheating in
    multiplayer games. | delete
 4. As a game developer, I would like to publish my new game on steam. | create
 5. As a user, I would like to be able to add games on my wishlist and remove them | update
 6. As a game developer, I would like to update the price of my offered games | update
-7. As a user i would like to be able to unlock achievements | create
-8. As a user i would like to delete my review | delete
+7. As a user I would like to be able to unlock achievements | create
+8. As a user I would like to delete my review | delete
 
 ## Data Model:
+
+One of the challenges was that we wanted to save the time played for each individual game as well as the timestamp when the 
+game was last played. We achieved this behaviour by creating a many-to-many relationship table "GamesInLibrary" with the through
+keyword of the ManyToMany relationship of Django. 
+
+We encountered the same problem with the Wishlist where we also had a ManyToMany relationship but luckily no additional fields.
+
+Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library is always created. 
+We solved this problem with Django's signals feature. 
+
+
 
 ### Entity-Relationship Diagram
 
@@ -117,6 +145,13 @@ erDiagram
 ```
 
 ## Tooling:
+
+For our implementation of the digital distribution service Steam, we chose the Django framework and SQLite3 as the database engine.
+
+For the creation of the database, we followed the official documentation of Django. The first step was to install Python
+and Django. From here, we were able to create a project in order to create models, fixtures and tests.
+https://docs.djangoproject.com/en/4.2/intro/install/
+https://docs.djangoproject.com/en/4.2/topics/install/
 
 ## Lessons Learned:
 
