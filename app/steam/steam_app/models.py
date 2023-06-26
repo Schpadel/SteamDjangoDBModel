@@ -28,6 +28,7 @@ class Game(models.Model):
         Game.objects.model.save(self)
 
     class Meta:
+        # rating can only be between 0% and 100%
         constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), )]
 
 
@@ -39,6 +40,9 @@ class SteamUser(models.Model):
     birthday = models.DateField()
     vac = models.BooleanField()
     level = models.IntegerField()
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['username'], name='unique_username')]
 
 
 class Wishlist(models.Model):
