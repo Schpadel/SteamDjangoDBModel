@@ -12,22 +12,26 @@ Semester: SS2023, Repo: Steam, Course ID: 262058, Course name: Datenbanken 1
 
 ## Introduction:
 
-We modeled the popular video game digital distribution service Steam from Valve. Our application consists of the following
+We modeled the popular video game digital distribution service Steam from Valve. Our application consists of the
+following
 entities: Game, User, Library, Wishlist, Achievement, Review.
 
 The relationships of our entities are shown in the mermaid ER diagram below.
 
 The Game entity in our application represents not a single unique instance of a uniquely bought key for a user
-but the general game + information which can be bought by multiple users for example "The Elder Scrolls V: Skyrim" but not the 
+but the general game + information which can be bought by multiple users for example "The Elder Scrolls V: Skyrim" but
+not the
 unique key which can be redeemed in a user library. This is why we have only one unique game table entry for each game.
 
-Reviews are the rating feature of Steam where each user can write feedback about a game. These reviews are always assigned to
-a single game and created by a single user. 
+Reviews are the rating feature of Steam where each user can write feedback about a game. These reviews are always
+assigned to
+a single game and created by a single user.
 
-Wishlists are lists which can be populated by the user with games that he would like to buy in the future and being informed about
-if they are on sale. A user always has exactly one wishlist and every wishlist is assigned to exactly one user. 
+Wishlists are lists which can be populated by the user with games that he would like to buy in the future and being
+informed about
+if they are on sale. A user always has exactly one wishlist and every wishlist is assigned to exactly one user.
 
-Library contains games and for each game contained in the library the time played and so on is saved. 
+Library contains games and for each game contained in the library the time played and so on is saved.
 
 ### Access Patterns
 
@@ -43,26 +47,30 @@ Library contains games and for each game contained in the library the time playe
 
 ## Data Model:
 
-One of the challenges was that we wanted to save the time played for each individual game as well as the timestamp when the 
-game was last played. We achieved this behaviour by creating a many-to-many relationship table "GamesInLibrary" with the through
-keyword of the ManyToMany relationship of Django. 
+One of the challenges was that we wanted to save the time played for each individual game as well as the timestamp when
+the
+game was last played. We achieved this behaviour by creating a many-to-many relationship table "GamesInLibrary" with the
+through
+keyword of the ManyToMany relationship of Django.
 
-We encountered the same problem with the Wishlist where we also had a ManyToMany relationship but luckily no additional fields.
+We encountered the same problem with the Wishlist where we also had a ManyToMany relationship but luckily no additional
+fields.
 
-Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library is always created. 
-We solved this problem with Django's signals feature. 
+Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library is
+always created.
+We solved this problem with Django's signals feature.
 
-Most of our access patterns could be implemented by using django's access methods, so we did not need to write custom functions, except for 
-releasing a new game where we also wanted to assign the achievements for the new game and the update of the game version. 
-
-
+Most of our access patterns could be implemented by using django's access methods, so we did not need to write custom
+functions, except for
+releasing a new game where we also wanted to assign the achievements for the new game and the update of the game
+version.
 
 ### Entity-Relationship Diagram
 
 ```mermaid
 erDiagram
-    GAME o{--o{ LIBRARY : has
-        GAME {
+    GAME o{--o{ LIBRARY: has
+    GAME {
         id int
         name string
         genre string
@@ -87,69 +95,70 @@ erDiagram
         gameID int
     }
 
-    
-    WISHLIST }o--o{ GAME : listed
-        WISHLIST {
-            userID int
-            gameID int            
-        }
-    ACHIEVEMENT }o--|| GAME : "has"
-        ACHIEVEMENT {
-            id int
-            name string
-            description string
-            gameID int
-        }
-    REVIEW }o--|| GAME : has    
-        REVIEW {
-            id int
-            heading string
-            text string
-            rating int
-            userID int
-        }
+
+    WISHLIST }o--o{ GAME: listed
+    WISHLIST {
+        userID int
+        gameID int
+    }
+    ACHIEVEMENT }o--|| GAME: "has"
+    ACHIEVEMENT {
+        id int
+        name string
+        description string
+        gameID int
+    }
+    REVIEW }o--|| GAME: has
+    REVIEW {
+        id int
+        heading string
+        text string
+        rating int
+        userID int
+    }
 
 
-    WISHLIST ||--|| USER : has
-    %%ACHIEVEMENT }o--o{ USER : "achieved"
-    REVIEW }o--|| USER : has    
-    %%INVENTORY ||--|| USER : has
-    %%    INVENTORY {
-    %%        userID int
-    %%        itemID int
-    %%    }
+    WISHLIST ||--|| USER: has
+%%ACHIEVEMENT }o--o{ USER : "achieved"
+    REVIEW }o--|| USER: has
+%%INVENTORY ||--|| USER : has
+%%    INVENTORY {
+%%        userID int
+%%        itemID int
+%%    }
 
-    USER ||--|| LIBRARY : "has"
-        USER {
-            id int
-            username string
-            addres string
-            firstname string
-            lastname string
-            birthday DateTime
-            VAC boolean
-            level int
-        }
-  
-    %%ITEM }o--o{ INVENTORY : "assigned to"
+    USER ||--|| LIBRARY: "has"
+    USER {
+        id int
+        username string
+        addres string
+        firstname string
+        lastname string
+        birthday DateTime
+        VAC boolean
+        level int
+    }
 
-    ACHIVED_BY }o--|| USER : has
-        ACHIVED_BY {
-            userID int
-            achievementID int
-            timestamp DateTime
-        }
+%%ITEM }o--o{ INVENTORY : "assigned to"
+
+    ACHIVED_BY }o--|| USER: has
+    ACHIVED_BY {
+        userID int
+        achievementID int
+        timestamp DateTime
+    }
     ACHIVED_BY }o--|| ACHIEVEMENT: has
-    %%ITEM {
-    %%    itemID int
-    %%    name string
-    %%    description string
-    %%}
+%%ITEM {
+%%    itemID int
+%%    name string
+%%    description string
+%%}
 ```
 
 ## Tooling:
 
-For our implementation of the digital distribution service Steam, we chose the Django framework and SQLite3 as the database engine.
+For our implementation of the digital distribution service Steam, we chose the Django framework and SQLite3 as the
+database engine.
 
 For the creation of the database, we followed the official documentation of Django. The first step was to install Python
 and Django. From here, we were able to create a project in order to create models, fixtures and tests.
@@ -159,7 +168,8 @@ https://docs.djangoproject.com/en/4.2/topics/install/
 ## Lessons Learned:
 
 We learned how to set up a database with Django and SQLite3, how to implement the models from our ER-diagram, how to
-create the JSON file to get entries for our tests. And finally, how to set up tests in Django and test our implementation.
+create the JSON file to get entries for our tests. And finally, how to set up tests in Django and test our
+implementation.
 
 After installing Python and Django, we found it quite easy to think about and implement the model and the respective
 fixtures for our model from our ER-diagram.
@@ -167,3 +177,9 @@ fixtures for our model from our ER-diagram.
 Problems occurred with the achievements here, we noticed during implementation that each user is only allowed to receive
 the achievement once. We solved the problem by creating a unique constraint with the name “unique_achievement_unlock”
 for the fields “user” and “achievement”.
+We had another problem when creating a .gitignore file. We pushed our IDE settings along with it, which caused issues
+with the python interpreter and the Django support of the IDE when other team members had pulled the latest commit.
+
+We were surprised how many standard methods there are in Django, which saved us a lot of effort in the implementation.
+Furthermore, we were surprised that when we declared an entity as a ForeignKey, it automatically created an ID for the
+entity.
