@@ -118,6 +118,9 @@ class GameTestCase(TestCase):
 
         self.assertEquals(count_of_games_on_wishlist + 1, user.wishlist.wished_Games.count())
 
+        # wishlist of random other user not affected
+        self.assertEquals(1, SteamUser.objects.get(pk=3).wishlist.wished_Games.count())
+
     def test_remove_games_from_wishlist(self):
         user = SteamUser.objects.get(pk=3)
 
