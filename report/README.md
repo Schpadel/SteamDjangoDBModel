@@ -63,7 +63,8 @@ We solved this problem with Django's signals feature.
 Most of our access patterns could be implemented by using django's access methods, so we did not need to write custom
 functions, except for
 releasing a new game where we also wanted to assign the achievements for the new game and the update of the game
-version.
+version.All the other access pattern could be implemented using just the already available django methods, so we just wrote the implementation 
+inside the test without declaring special methods for each, but they could simply be extracted from the test if needed. 
 
 ### Entity-Relationship Diagram
 
@@ -181,5 +182,5 @@ We had another problem when creating a .gitignore file. We pushed our IDE settin
 with the python interpreter and the Django support of the IDE when other team members had pulled the latest commit.
 
 We were surprised how many standard methods there are in Django, which saved us a lot of effort in the implementation.
-Furthermore, we were surprised that when we declared an entity as a ForeignKey, it automatically created an ID for the
-entity.
+Furthermore, we were surprised that when we declared an entity as a ForeignKey, django automatically named the variable ID
+for the entity, so we often had fields like gameID_id which we then had to fix.
