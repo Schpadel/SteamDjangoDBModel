@@ -72,8 +72,8 @@ always created. We solved this problem with Django's signals feature.
 
 ```mermaid
 erDiagram
-    GAME o{--o{ LIBRARY: has
-    GAME {
+    GAME o{--o{ LIBRARY : has
+        GAME {
         id int
         name string
         genre string
@@ -97,65 +97,51 @@ erDiagram
         CloudSaveStatus boolean
         gameID int
     }
+    
+    WISHLIST }o--o{ GAME : listed
+        WISHLIST {
+            userID int
+            gameID int            
+        }
+    ACHIEVEMENT }o--|| GAME : "has"
+        ACHIEVEMENT {
+            id int
+            name string
+            description string
+            gameID int
+        }
+    REVIEW }o--|| GAME : has    
+        REVIEW {
+            id int
+            heading string
+            text string
+            rating int
+            userID int
+        }
 
+    WISHLIST ||--|| USER : has
+    REVIEW }o--|| USER : has    
 
-    WISHLIST }o--o{ GAME: listed
-    WISHLIST {
-        userID int
-        gameID int
-    }
-    ACHIEVEMENT }o--|| GAME: "has"
-    ACHIEVEMENT {
-        id int
-        name string
-        description string
-        gameID int
-    }
-    REVIEW }o--|| GAME: has
-    REVIEW {
-        id int
-        heading string
-        text string
-        rating int
-        userID int
-    }
+    USER ||--|| LIBRARY : "has"
+        USER {
+            id int
+            username string
+            addres string
+            firstname string
+            lastname string
+            birthday DateTime
+            VAC boolean
+            level int
+        }
 
+    ACHIEVED_BY }o--|| USER : has
+        ACHIEVED_BY {
+            userID int
+            achievementID int
+            timestamp DateTime
+        }
+    ACHIEVED_BY }o--|| ACHIEVEMENT: has
 
-    WISHLIST ||--|| USER: has
-%%ACHIEVEMENT }o--o{ USER : "achieved"
-    REVIEW }o--|| USER: has
-%%INVENTORY ||--|| USER : has
-%%    INVENTORY {
-%%        userID int
-%%        itemID int
-%%    }
-
-    USER ||--|| LIBRARY: "has"
-    USER {
-        id int
-        username string
-        addres string
-        firstname string
-        lastname string
-        birthday DateTime
-        VAC boolean
-        level int
-    }
-
-%%ITEM }o--o{ INVENTORY : "assigned to"
-
-    ACHIVED_BY }o--|| USER: has
-    ACHIVED_BY {
-        userID int
-        achievementID int
-        timestamp DateTime
-    }
-    ACHIVED_BY }o--|| ACHIEVEMENT: has
-%%ITEM {
-%%    itemID int
-%%    name string
-%%    description string
-%%}
 ```
 
 ## Tooling:
