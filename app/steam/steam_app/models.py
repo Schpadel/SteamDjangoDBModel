@@ -31,7 +31,7 @@ class Game(models.Model):
 
     class Meta:
         # rating can only be between 0% and 100%
-        constraints = [models.CheckConstraint(name="Test Int Constraint", check=models.Q(rating__range=(0, 100)), ),
+        constraints = [models.CheckConstraint(name="correct_rating", check=models.Q(rating__range=(0, 100)), ),
                        models.UniqueConstraint(fields=["name"], name="unique_game_name")]
 
 
