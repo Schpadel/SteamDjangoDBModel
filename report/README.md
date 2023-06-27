@@ -176,4 +176,4 @@ Furthermore, we were surprised that when we declared an entity as a ForeignKey, 
 for the entity, so we often had fields like gameID_id which we then had to fix.
 
 ## Video
-![Your Video](2023-06-26%2021-18-45.mp4)
+![](2023-06-26_21-18-45.mp4)
