@@ -47,24 +47,26 @@ Library contains games and for each game contained in the library the time playe
 
 ## Data Model:
 
-One of the challenges was that we wanted to save the time played for each individual game as well as the timestamp when
-the
-game was last played. We achieved this behaviour by creating a many-to-many relationship table "GamesInLibrary" with the
-through
-keyword of the ManyToMany relationship of Django.
-
-We encountered the same problem with the Wishlist where we also had a ManyToMany relationship but luckily no additional
-fields.
-
-Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library is
-always created.
-We solved this problem with Django's signals feature.
-
 Most of our access patterns could be implemented by using django's access methods, so we did not need to write custom
 functions, except for
 releasing a new game where we also wanted to assign the achievements for the new game and the update of the game
-version.All the other access pattern could be implemented using just the already available django methods, so we just wrote the implementation 
-inside the test without declaring special methods for each, but they could simply be extracted from the test if needed. 
+version.All the other access patterns could be implemented using just the already available django methods, so we just wrote the implementation
+inside the tests without declaring special methods for each, but they could simply be extracted from the test if needed.
+
+We also created constraints for our database tables where we thought it would benefit out application. A possible example for this is that we added a 
+check constraint so that each achievement in the achieved_by relation table must be unique for each user and achievement combinations, so that a single 
+user can unlock the same achievement only once. 
+
+One of the challenges was that we wanted to save the time played for each individual game as well as the timestamp when
+the game was last played. We achieved this behaviour by creating a many-to-many relationship table "GamesInLibrary" with the
+through keyword of the many-to-many relationship of Django.
+
+We encountered the same problem with the Wishlist where we also had a many-to-many relationship but luckily no additional
+fields.
+
+Another problem was that we wanted to ensure that when we create a user it is ensured that a new wishlist and library are
+always created. We solved this problem with Django's signals feature.
+
 
 ### Entity-Relationship Diagram
 
