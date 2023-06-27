@@ -151,7 +151,9 @@ database engine.
 
 For the creation of the database, we followed the official documentation of Django. The first step was to install Python
 and Django. From here, we were able to create a project in order to create models, fixtures and tests.
+
 https://docs.djangoproject.com/en/4.2/intro/install/
+
 https://docs.djangoproject.com/en/4.2/topics/install/
 
 ## Lessons Learned:
@@ -172,3 +174,6 @@ with the python interpreter and the Django support of the IDE when other team me
 We were surprised how many standard methods there are in Django, which saved us a lot of effort in the implementation.
 Furthermore, we were surprised that when we declared an entity as a ForeignKey, django automatically named the variable ID
 for the entity, so we often had fields like gameID_id which we then had to fix.
+
+## Video
+![Your Video](2023-06-26%2021-18-45.mkv)
