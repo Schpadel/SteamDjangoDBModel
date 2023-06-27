@@ -17,8 +17,14 @@ class GameTestCase(TestCase):
         self.assertEquals(diablo.name, "Diablo IV")
 
     def test_create_user(self):
-        SteamUser.objects.create(username="peter", birthday="1990-04-03", lastname="gustav", firstname="help", address="Baum2", vac="False", level=3)
-        print(Library.objects.all())
+        SteamUser.objects.create(username="peter", birthday="1990-04-03", lastname="gustav", firstname="help",
+                                 address="Baum2", vac="False", level=3)
+        created_user_from_db = SteamUser.objects.filter(username="peter").first()
+        self.assertEquals("peter", created_user_from_db.username)
+
+        # check if library and wishlist was created for this newly created user
+        self.assertIn(created_user_from_db.pk, Wishlist.objects.values_list("user_id", flat=True))
+        self.assertIn(created_user_from_db.pk, Library.objects.values_list("user_id", flat=True))
 
     def test_update_game_version(self):
         game_to_update = Game.objects.get(pk=1)
