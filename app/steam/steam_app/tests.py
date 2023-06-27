@@ -41,7 +41,7 @@ class GameTestCase(TestCase):
             self.assertTrue(Game.objects.get(pk=owned_game_pk) in all_games)
 
     def test_publish_new_game(self):
-        game = Game(publisher="Giants Software", size=30, developer="Giants Software", franchise="Simulation",
+        game = Game(publisher="Giants Software", size=10, developer="Giants Software", franchise="Simulation",
                     description="Farm some shit", release_date="2023-05-23", supported_languages="EN",
                     supported_platforms="PC,Switch", rating=69, usk=0, genre="Simulation", price=44.99,
                     name="Landwirtschafts Simulator 23")

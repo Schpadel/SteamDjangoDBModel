@@ -11,8 +11,8 @@ class Game(models.Model):
     publisher = models.CharField(max_length=200)
     developer = models.CharField(max_length=200)
     franchise = models.CharField(max_length=200)
-    price = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(0)])
-    size = models.DecimalField(decimal_places=2, max_digits=100, validators=[MinValueValidator(0)])
+    price = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(0.0)])
+    size = models.DecimalField(decimal_places=2, max_digits=100, validators=[MinValueValidator(0.0)])
     rating = models.SmallIntegerField()
     release_date = models.DateField("date released")
     usk = models.SmallIntegerField(validators=[MinValueValidator(0)])
@@ -43,7 +43,7 @@ class SteamUser(models.Model):
     lastname = models.CharField(max_length=200)
     birthday = models.DateField()
     vac = models.BooleanField()
-    level = models.IntegerField(validators=[MinValueValidator(1)])
+    level = models.PositiveIntegerField(validators=[MinValueValidator(1)])
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['username'], name='unique_username')]
@@ -74,7 +74,7 @@ class GamesInLibrary(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
     timePlayed = models.DurationField(validators=[MinValueValidator(0)])
-    lastPlayed = models.DateTimeField(validators=[MinValueValidator(0)])
+    lastPlayed = models.DateTimeField()
     cloudSaveStatus = models.BooleanField()
 
 
