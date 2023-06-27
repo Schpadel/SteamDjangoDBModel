@@ -182,4 +182,4 @@ After researching this topic we found that the validator function is only being 
 a web form and not when working directly with the models. 
 
 ## Video
-![Your Video](2023-06-26%2021-18-45.mp4)
+![](2023-06-26_21-18-45.mp4)
