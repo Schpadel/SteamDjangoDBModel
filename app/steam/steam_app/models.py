@@ -1,20 +1,21 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MinValueValidator
 
 
-# Create your models here.
 class Game(models.Model):
     name = models.CharField(max_length=200)
     genre = models.CharField(max_length=200)
     publisher = models.CharField(max_length=200)
     developer = models.CharField(max_length=200)
     franchise = models.CharField(max_length=200)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    size = models.DecimalField(decimal_places=2, max_digits=100)
+    price = models.DecimalField(decimal_places=2, max_digits=10, validators=[MinValueValidator(0)])
+    size = models.DecimalField(decimal_places=2, max_digits=100, validators=[MinValueValidator(0)])
     rating = models.SmallIntegerField()
     release_date = models.DateField("date released")
-    usk = models.SmallIntegerField()
+    usk = models.SmallIntegerField(validators=[MinValueValidator(0)])
     supported_platforms = models.CharField(max_length=200, default="PC")
     supported_languages = models.CharField(max_length=200)
     description = models.CharField(max_length=20_000)
@@ -42,7 +43,7 @@ class SteamUser(models.Model):
     lastname = models.CharField(max_length=200)
     birthday = models.DateField()
     vac = models.BooleanField()
-    level = models.IntegerField()
+    level = models.IntegerField(validators=[MinValueValidator(1)])
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['username'], name='unique_username')]
@@ -72,8 +73,8 @@ class Library(models.Model):
 class GamesInLibrary(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
-    timePlayed = models.DurationField()
-    lastPlayed = models.DateTimeField()
+    timePlayed = models.DurationField(validators=[MinValueValidator(0)])
+    lastPlayed = models.DateTimeField(validators=[MinValueValidator(0)])
     cloudSaveStatus = models.BooleanField()
 
 
