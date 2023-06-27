@@ -175,5 +175,11 @@ We were surprised how many standard methods there are in Django, which saved us 
 Furthermore, we were surprised that when we declared an entity as a ForeignKey, django automatically named the variable ID
 for the entity, so we often had fields like gameID_id which we then had to fix.
 
+While implementing some range checking for our models so that only valid values could be set for the fields in our models 
+we found Django's validator feature which seemed really easy and useful. After implementing the validator we tested our models
+and were confused that although we declared a minimum value of zero it was still possible to set values below our minimum value. 
+After researching this topic we found that the validator function is only being evaluated when you use Django like it is intended via 
+a web form and not when working directly with the models. 
+
 ## Video
 ![Your Video](2023-06-26%2021-18-45.mp4)
